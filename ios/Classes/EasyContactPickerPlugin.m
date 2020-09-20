@@ -105,13 +105,7 @@ NSString*const METHOD_CALL_LIST = @"selectContactList";
 
             // 发送请求
             [store enumerateContactsWithFetchRequest:request error:nil usingBlock:^(CNContact * _Nonnull contact, BOOL * _Nonnull stop) {
-                ContactModel *contactModel = [[ContactModel alloc]init];
-                // 获取名字
-                NSString * givenName = contact.givenName;
-                // 获取姓氏
-                NSString * familyName = contact.familyName;
-
-                contactModel.name = [NSString stringWithFormat:@"%@%@",familyName,givenName];
+               
                 // 获取电话
                 NSArray * phoneArray = contact.phoneNumbers;
                 for (CNLabeledValue * labelValue in phoneArray) {
