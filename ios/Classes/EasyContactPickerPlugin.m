@@ -115,10 +115,18 @@ NSString*const METHOD_CALL_LIST = @"selectContactList";
                 // 获取电话
                 NSArray * phoneArray = contact.phoneNumbers;
                 for (CNLabeledValue * labelValue in phoneArray) {
+                   ContactModel *contactModel = [[ContactModel alloc]init];
                     CNPhoneNumber * number = labelValue.value;
                     contactModel.phoneNumber = number.stringValue;
+                // 获取名字
+                NSString * givenName = contact.givenName;
+                // 获取姓氏
+                NSString * familyName = contact.familyName;
+
+                contactModel.name = [NSString stringWithFormat:@"%@%@",familyName,givenName];
+                  [contacts addObject:contactModel];
                 }
-                [contacts addObject:contactModel];
+                
             }];
             self.result([self defaultHandleContactObject:contacts]);
         } else {
